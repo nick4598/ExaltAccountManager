@@ -268,7 +268,6 @@ function FameAndFameBonusPopover({ character }) {
     const handleClose = () => {
         setAnchorEl(null);
       };
-    console.log(character.processed_pc_stats);
     const theme = useTheme();
     const open = Boolean(anchorEl);
 
@@ -399,7 +398,7 @@ function FameAndFameBonusPopover({ character }) {
                                 <TableBody>
                                     <TableRow key={`${dungeonBonusName}-Header-${character.char_id}`}>
                                         <TableCell colSpan={dungeonBonuses[dungeonBonusName].length}>
-                                            <Typography color={dungeonBonuses[dungeonBonusName].every((dungeonName) => {return character.processed_pc_stats.get(dungeonName) >= 1}) ? theme.palette.warning.main : theme.palette.text.primary} variant="h6" fontWeight={300}>
+                                            <Typography color={dungeonBonuses[dungeonBonusName].every((dungeonName) => {return character.stats.get(dungeonName) >= 1}) ? theme.palette.warning.main : theme.palette.text.primary} variant="h6" fontWeight={300}>
                                                 {dungeonBonusName}
                                             </Typography>
                                         </TableCell>
@@ -425,7 +424,7 @@ function FameAndFameBonusPopover({ character }) {
                                                     {
                                                         dungeonBonuses[dungeonBonusName].slice(rowNumber * MAX_DUNGEONS_PER_ROW, MAX_DUNGEONS_PER_ROW * (rowNumber + 1)).map((dungeonName) => {
                                                             return (
-                                                                <TableCell>{dungeonName === pcStatsDescriptionEnum.SPECTRAL_PENITENTIARY ? <Tooltip title = "Unknown"><QuestionMarkIcon></QuestionMarkIcon></Tooltip> : character.processed_pc_stats.get(dungeonName) >= 1 ?  <Tooltip title = "Completed"><CheckIcon></CheckIcon></Tooltip> : <Tooltip title = "Not completed"><ClearIcon></ClearIcon></Tooltip>}</TableCell>
+                                                                <TableCell>{dungeonName === pcStatsDescriptionEnum.SPECTRAL_PENITENTIARY ? <Tooltip title = "Unknown"><QuestionMarkIcon></QuestionMarkIcon></Tooltip> : character.stats.get(dungeonName) >= 1 ?  <Tooltip title = "Completed"><CheckIcon></CheckIcon></Tooltip> : <Tooltip title = "Not completed"><ClearIcon></ClearIcon></Tooltip>}</TableCell>
                                                             );
                                                         })
                                                     }

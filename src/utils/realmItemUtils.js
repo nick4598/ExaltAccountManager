@@ -109,9 +109,6 @@ export function formatCharacterDataFromCharListDataset(character) {
         return null;
     }
     const pcStatsParsed = parsePcStats(character.pc_stats);
-    if (character.char_id === 206) {
-        console.log(pcStatsParsed);
-    }
 
     return {
         char_id: character.char_id,
@@ -138,7 +135,7 @@ export function formatCharacterDataFromCharListDataset(character) {
         texture: character.texture,
         crucibleActive: character.crucible_active,
         raw_pc_stats: character.pc_stats, // probably unnecessary but this is an array of all the statValues.
-        processed_pc_stats: pcStatsParsed, // See parsePcStats for more information.
+        stats: pcStatsParsed, // See parsePcStats for more information.
     };
 }
 
